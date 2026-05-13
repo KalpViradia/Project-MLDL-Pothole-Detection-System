@@ -140,10 +140,42 @@ curl -X POST http://localhost:5000/api/detect-video \
 | -------------- | ---------------------- |
 | Architecture   | YOLOv8 Large (v8l)     |
 | Input Size     | 768 × 768              |
-| Dataset        | ~19,000 images         |
+| Dataset        | 18,976 images          |
 | Classes        | Pothole (single-class) |
 | Conf Threshold | 0.35                   |
 | IoU Threshold  | 0.45                   |
+
+### 📈 Performance Metrics
+
+| Metric      | Value  |
+| ----------- | ------ |
+| mAP@50      | 63.6%  |
+| mAP@50-95   | 34.1%  |
+| Precision   | 69.3%  |
+| Recall      | 58.5%  |
+| F1 Score    | 63.4%  |
+
+### ⚙️ Training Configuration
+
+| Parameter      | Value                                              |
+| -------------- | -------------------------------------------------- |
+| Total Epochs   | 832                                                |
+| Optimizer      | AdamW                                              |
+| LR Schedule    | Cosine Annealing                                   |
+| Precision      | Mixed (AMP)                                        |
+| Batch Size     | 18 (Kaggle) / 13 (Local)                           |
+| Augmentations  | Mosaic, MixUp, CopyPaste, RandAugment, Erasing     |
+
+### 📦 Dataset Statistics
+
+| Metric                    | Value                          |
+| ------------------------- | ------------------------------ |
+| Total Images              | 18,976                         |
+| Total Bounding Boxes      | 35,142                         |
+| Train / Val / Test        | 13,284 / 3,796 / 1,896 (70/20/10) |
+| Avg Boxes per Image       | 1.85                           |
+| Small Objects (< 32px)    | 30.3%                          |
+| Source Formats Merged      | XML, CSV, RDD2022              |
 
 ---
 
